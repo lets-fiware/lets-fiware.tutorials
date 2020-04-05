@@ -12,8 +12,6 @@ services:
 
         depends_on:
             - wirecloud
-            - orion
-            - ngsiproxy
 
     wirecloud:
         image: fisuda/wirecloud:1.3            
