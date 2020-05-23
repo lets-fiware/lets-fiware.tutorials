@@ -50,6 +50,8 @@ services:
 
     ngsiproxy:
         image: fiware/ngsiproxy:1.2.0
+        ports:
+            - 3000:3000
 
     orion:
         image: fiware/orion:2.4.0
