@@ -1,2 +1,2 @@
 #!/bin/bash
-docker stop context_producer01
+docker stop context-producer-01

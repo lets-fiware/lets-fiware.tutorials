@@ -21,6 +21,7 @@ def handler(signum, frame):
 
 def main():
   signal.signal(signal.SIGTERM, handler)
+  signal.signal(signal.SIGINT, handler)
 
   bus = SMBus(1)
   bme280 = BME280(i2c_dev=bus)
@@ -50,7 +51,7 @@ def main():
     'id': id,
     'dateObserved': {
       'type': 'DateTime',
-      'value': '{}'.format(datetime.datetime.now().isoformat(timespec='seconds'))
+      'value': '{}'.format(datetime.datetime.utcnow().isoformat(timespec='seconds'))
     },
     'temperature': {
       'type': 'Number',
@@ -87,7 +88,7 @@ def main():
     update = {
       'dateObserved': {
         'type': 'DateTime',
-        'value': '{}'.format(datetime.datetime.now().isoformat(timespec='seconds'))
+        'value': '{}'.format(datetime.datetime.utcnow().isoformat(timespec='seconds'))
       },
       'temperature': {
         'type': 'Number',

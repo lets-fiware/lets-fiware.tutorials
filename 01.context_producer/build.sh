@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t context_producer01 .
+docker build -t fisuda/context-producer-01:1.0 .
