@@ -1,2 +1,2 @@
 #!/bin/bash
-docker logs context_producer01
+docker logs context-producer-01

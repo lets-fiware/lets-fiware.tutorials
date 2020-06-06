@@ -1,5 +1,3 @@
 #!/bin/bash
-: ${1:?run.sh <orion_url>}
-echo $1
-docker run --rm -d --name context_producer01 -e ORION_URL=$1 -e DEBUG_FLAG=true -e DEBUG_FLAG=true --device /dev/i2c-1 context_producer01
-
+: ${ORION_URL:?Not found}
+docker run --rm -d --name context-producer-01 -e ORION_URL=$ORION_URL -e DEBUG_FLAG=true --device /dev/i2c-1 fisuda/context-producer-01:1.0
