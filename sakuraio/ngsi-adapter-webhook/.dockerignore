@@ -1,0 +1,6 @@
+data/
+node_modules/
+Makefile
+data
+docker-compose.yml
+nginx.conf

@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+
+    nginx:
+        image: nginx:latest
+        ports:
+            - 443:443
+        volumes:
+            - ./nginx.conf:/etc/nginx/nginx.conf:ro
+            - /etc/letsencrypt:/etc/letsencrypt:ro
+        depends_on:
+            - ngsi-adapter
+
+    ngsi-adapter:
+        image: fisuda/ngsi-adapter-sakuraio-webhook:1.0
+        ports:
+            - 127.0.0.1:8080:8080
+        environment:
+            # - ORION_URL=http://orion:1026/
+            #-  FIWARE_SERVICE=openiot
+            # - FIWARE_SERVICEPATH=/sakuraio
+            # - ENTITY_TYPE=Device
+            # - NGSI_ADAPTER_ENDPOINT=/v1
+            # - SERVER_PORT=8080
+            # - SAKURA_IO_SECRET=lets-fiware
+            - FIWARE_DEBUG=true
+        depends_on:
+            - orion
+
+    orion:
+        image: fiware/orion:2.4.0
+        ports:
+            - 127.0.0.1:1026:1026
+        depends_on:
+            - mongo
+        command:
+            -dbhost mongo
+            -db orion
+
+    mongo:
+        image: mongo:3.6.16
+        command: --nojournal --smallfiles
+        volumes:
+            - ./data/mongo-data:/data/db
