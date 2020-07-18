@@ -93,7 +93,7 @@ router.post('/', function(req, res, next) {
                 break;
 
             case 'connection':
-                console.log(`connection: ${datetime} : is_online : ${payload.is_online}`);
+                console.log(`connection: ${req.body.datetime} : is_online : ${payload.is_online}`);
                 break;
         }
 
