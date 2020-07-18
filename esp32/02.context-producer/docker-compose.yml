@@ -1,0 +1,23 @@
+version: "3"
+ 
+services:
+ 
+    mongo:
+        container_name: mongo
+        restart: always
+        image: mongo:3.4
+        command: --nojournal
+        ports:
+            - 127.0.0.1:27017:27017
+ 
+    orion:
+        container_name: orion
+        restart: always
+        image: fiware/orion:2.0.0
+        depends_on:
+            - mongo
+        links:
+            - mongo
+        ports:
+            - "1026:1026"
+        command: -dbhost mongo
