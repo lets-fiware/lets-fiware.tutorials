@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+
+    ngsi-adapter:
+        image: fisuda/ngsi-adapter-sakuraio-websocket:1.0
+        environment:
+            # - ORION_URL=http://orion:1026/
+            #-  FIWARE_SERVICE=openiot
+            # - FIWARE_SERVICEPATH=/sakuraio
+            # - ENTITY_TYPE=Device
+            - SAKURA_IO_WEBSOCKET=wss://api.sakura.io/ws/v1/00000000-0000-0000-0000-000000000000
+            - FIWARE_DEBUG=true
+        depends_on:
+            - orion
+
+    orion:
+        image: fiware/orion:2.4.0
+        ports:
+            - 1026:1026
+        depends_on:
+            - mongo
+        command:
+            -dbhost mongo
+            -db orion
+
+    mongo:
+        image: mongo:3.6.16
+        command: --nojournal --smallfiles
+        volumes:
+            - ./data/mongo-data:/data/db

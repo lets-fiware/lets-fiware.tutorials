@@ -1,0 +1,16 @@
+{
+  "name": "ngsi-adapter-websocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "ws": "^7.3.1"
+  }
+}
