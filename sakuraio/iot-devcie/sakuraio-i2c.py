@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+import os
 import sys
 import signal
 import time
@@ -12,7 +13,7 @@ try:
 except ImportError:
     from smbus import SMBus
 
-WAIT = 60
+WAIT = int(os.environ.get('INTERVAL', '60'));
 
 def handler(signum, frame):
     sys.exit(0)
