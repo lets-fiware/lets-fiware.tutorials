@@ -24,8 +24,8 @@ process.on('SIGTERM', () => {
 });
 
 console.log('NGSI Adapter for sakura.io (WebSocket)');
-console.log(`WebSocket : ${websocketUrl}`);
-console.log(`Orion URL : ${orionUrl}, EntityType: ${entityType}`);
+console.log(`WebSocket: ${websocketUrl}`);
+console.log(`Orion URL: ${orionUrl}, EntityType: ${entityType}`);
 console.log(`FWIARE-Service: ${config.fiwareService}, FIWARE-ServicePath: ${config.fiwareServicepath}, debug: ${config.debug}`);
 
 const ws = new WebSocket(websocketUrl);
