@@ -1,0 +1,15 @@
+#!/bin/bash
+: ${IOTA_IP:?Not found}
+: ${IOTA_KEY:=1234}
+curl -X POST "http://$IOTA_IP:4041/iot/services" \
+    -H "Fiware-Service: openiot" -H "Fiware-ServicePath: /sakuraio"\
+    -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d "{ 
+    \"services\": [ 
+      {
+          \"resource\": \"\",
+          \"apikey\": \"$IOTA_KEY\",
+          \"type\": \"Device\"
+      }
+    ]
+}
+"

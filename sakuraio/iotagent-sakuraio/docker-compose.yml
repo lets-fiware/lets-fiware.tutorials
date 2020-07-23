@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+
+    orion:
+        image: fiware/orion:2.4.0
+        ports:
+            - 1026:1026
+        depends_on:
+            - mongo
+        command:
+            -dbhost mongo
+            -db orion
+
+    mongo:
+        image: mongo:3.6.16
+        command: --nojournal --smallfiles
+        volumes:
+            - ./data/mongo-data:/data/db
+
+    iot-agent:
+        image: fisuda/custom-iot-agent-sakuraio:1.0
+        ports:
+            - 4041:4041
+        depends_on:
+            - mongo
+        environment:
+            - IOTA_LOG_LEVEL=DEBUG
+            - IOTA_WEBSOCKET=wss://api.sakura.io/ws/v1/c53a2a26-7b20-4824-880f-27b42f9d27cb
+            # - IOTA_WEBSOCKET=wss://api.sakura.io/ws/v1/00000000-0000-0000-0000-000000000000
+            # - IOTA_CB_HOST=orion
+            # - IOTA_CB_PORT=1026
+            # - IOTA_NORTH_PORT=4041
+            # - IOTA_REGISTRY_TYPE=mongodb
+            # - IOTA_MONGO_HOST=mongo
+            # - IOTA_MONGO_PORT=27017
+            # - IOTA_MONGO_DB=iotasakuraio
+            # - IOTA_SERVICE=openiot
+            # - IOTA_SUBSERVICE=/sakuraio
+            # - IOTA_PROVIDER_URL=http://iot-agent:4041
+            # - IOTA_DEVICE_REGISTRY_DURATION=P1M
+            # - IOTA_DEFAULT_TYPE=Thing
