@@ -1,0 +1,4 @@
+#!/bin/bash
+: ${ORION_URL:?Not found}
+curl -sS -H 'FIWARE-Service: openiot' -H 'FIWARE-ServicePath: /sakuraio' \
+$ORION_URL/v2/entities | jq .

@@ -1,0 +1,5 @@
+#!/bin/bash
+: ${IOTA_IP:?Not found}
+: ${IOTA_KEY:=1234}
+curl -is -X DELETE "http://$IOTA_IP:4041/iot/services?resource=&apikey=$IOTA_KEY" \
+-H 'fiware-service: openiot' -H 'fiware-servicepath: /sakuraio'

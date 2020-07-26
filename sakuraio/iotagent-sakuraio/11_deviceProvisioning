@@ -1,0 +1,20 @@
+#!/bin/bash
+: ${IOTA_IP:?Not found}
+: ${DEVICE_ID:?Not found}
+curl -X POST "http://$IOTA_IP:4041/iot/devices" \
+  -H "Fiware-Service: openiot" -H "Fiware-ServicePath: /sakuraio" \
+  -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d "{ 
+  \"devices\": [ 
+    { 
+      \"device_id\":   \"$DEVICE_ID\",
+      \"entity_name\": \"urn:ngsi-ld:Device:$DEVICE_ID\",
+      \"entity_type\": \"Device\", 
+      \"attributes\": [ 
+        { \"object_id\": \"t\", \"name\": \"temperature\", \"type\": \"Number\" },
+        { \"object_id\": \"h\", \"name\": \"relativeHumidity\", \"type\": \"Number\" },
+        { \"object_id\": \"p\", \"name\": \"atmosphericPressure\", \"type\": \"Number\" }
+      ]
+    }
+  ]
+}
+"
