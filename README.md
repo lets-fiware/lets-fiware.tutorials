@@ -8,5 +8,5 @@
 
 ## Copyright and License
 
-Copyright (c) 2020-2022 Kazuhito Suda<br>
+Copyright (c) 2020-2023 Kazuhito Suda<br>
 Licensed under the MIT license.
