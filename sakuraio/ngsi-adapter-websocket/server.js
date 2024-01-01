@@ -2,7 +2,7 @@
  * NGSI Adapter for sakura.io (WebSocket)
  * https://github.com/lets-fiware/lets-fiware.tutorials
  *
- * Copyright (c) 2020-2023 Kazuhito Suda
+ * Copyright (c) 2020-2024 Kazuhito Suda
  * Licensed under the MIT license.
  */
 
